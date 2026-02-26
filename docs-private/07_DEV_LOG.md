@@ -1,0 +1,51 @@
+# SNSアプリ OmoikaNex 開発ログ (Development Log)
+
+## 概要
+
+このドキュメントは、過去のプロジェクトで得た高度なリファクタリングの知見（Zod, React Hook Form, Zustand, OpenAPI連携, APIベースの完全分離構成）をフロントロードした、最新の技術スタック（Laravel 12 / Next.js 15 / TypeScript）による SNS アプリケーションの開発プロセス、技術的決定事項、および学習の軌跡を記録するものです。
+
+---
+
+## 2026-02-24: SNSプロジェクト始動とドキュメントアーキテクチャの再編
+
+### 1. プロジェクトの目的と方針
+
+- **目的:** 過去のプロジェクトで培った「型安全性の極限までの追求」を初期設計から組み込み、最速で強固なTwitterクローンを開発する。
+- **基本方針:**
+    - **完全分離型アーキテクチャ (Headless):** Laravel 12 を「API専門」とし、Next.js 15 (App Router) がフロントエンドを統括する。
+    - **フロントロードされた型安全性:** 手動での型定義を行わず、初日（Phase 1）から OpenAPI生成ツール (`Scribe`) と `openapi-typescript` による自動同期体制を設計。
+    - **ドキュメント駆動開発の継承:** 「憲法・法律・マニュアル」といったAI協働システムを継承・進化させる。
+
+### 2. 環境構築とドキュメント整備の完遂
+
+- `01_SNS_DEVELOPMENT_PLAN.md`（ロードマップ原案）に基づき、前回の `Lara-Inertia-Attendance` で運用されていた `docs-private/` フォルダ内の全ドキュメントを、新しいSNSプロジェクト（Laravel + Next.js 完全分離型）向けにオーバーホールし、最適化した。
+- **更新完了:**
+    - `01_AGENT_RECOVERY_MANUAL.md` (復旧手順): Next.js/Laravel 向けに更新。
+    - `02_RULES_AND_ARCHITECTURE.md` (憲法): API分離・トークン認証（BFF利用）・Zustand・RHF などを組み込んだ新アーキテクチャ宣言へ刷新。
+    - `03_WORKFLOW.md` (ロードマップ): SNS開発の Phase 1 〜 5 までのチェックリストを反映完了。
+    - `04_CODING_RULES.md` / `05_DESIGN_PATTERNS.md`: Next.js 固有のディレクトリ構成、React Query の Server/Client State 分離、そして Zustand の利用方針を策定。
+    - `06_TESTING_GUIDE.md`: JSON API に対するテストと MSW/React Query のモック指針を追加。
+
+### 本日の結果と次回のタスク
+
+**次回のタスク (Phase 1):** Backend (Laravel 12) のインストール、APIルーティング設定、Sanctumトークン環境の構築、および `Scribe` の初期設定へ進む。
+
+---
+
+## 2026-02-26: プロジェクト「OmoikaNex」正式始動とバックエンド初期化
+
+### 1. プロジェクトの命名とディレクトリ移行
+*   **正式名称決定:** `OmoikaNex`（オモイカネクス）。知恵の神（Omoikane）、繋がり（Nexus）を統合。
+*   **資産移行:** `SNSアプリ` ディレクトリから全設計ドキュメントを `OmoikaNex` へ移行完了。
+
+### 2. バックエンド基盤 (Phase 1) の構築
+*   **Laravel 12 API セットアップ:** `laravel.build` (Sail) を使用し、`backend-api` プロジェクトを初期化。
+*   **インフラ構成:** MySQL 8.4, Mailpit, phpMyAdmin を Docker (Sail) 上で構築。
+*   **権限調整:** Docker コンテナによる所有権問題を `sudo chown` により解決し、ホスト側からの編集権限を確保。
+*   **API 基盤の整備:**
+    *   `php artisan install:api` を実行し、Sanctum 認証基盤を導入。
+    *   `User` モデルに `HasApiTokens` トレイトを追加し、トークンベース認証の準備を完了。
+
+### 本日の結果と次回のタスク
+*   **ステータス:** Phase 1（バックエンド初期化）完了。
+*   **次回のタスク:** フロントエンド (Next.js 15) の初期化、および OpenAPI 生成ツール (`Scribe`) の導入による型同期パイプラインの構築。
