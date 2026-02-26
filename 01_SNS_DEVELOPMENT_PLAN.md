@@ -20,7 +20,7 @@
 - **Backend (Laravel)**
     - Laravel 12のインストールとAPIルーティングの設定
     - Sanctum トークン認証の基盤設定 (Session Cookieベースではない)
-    - `Scribe` (または `Scramble`) パッケージの導入によるOpenAPI自動生成準備
+    - `Scramble` パッケージの導入によるOpenAPI自動生成準備
 - **Frontend (Next.js)**
     - Next.js App Router (TypeScript, Tailwind) のセットアップ
     - `openapi-typescript` によるAPI仕様の型アノテーション自動生成 (`codegen` のコマンド化)

@@ -79,8 +79,8 @@
 ### Phase 1: インフラと「型同期」パイプラインの初期構築
 
 - [x] **バックエンド構築:** Laravel 12のAPIセットアップ、Sanctumトークン認証基盤の準備。
-- [ ] **フロントエンド構築:** Next.js 15 (App Router) プロジェクトの生成、Tailwind設定。
-- [ ] **型同期確立:** `Scribe` (または `Scramble`) の導入と `openapi-typescript` による `schema.d.ts` の連携。
+- [x] **フロントエンド構築:** Next.js 15 (App Router) プロジェクトの生成、Tailwind設定。
+- [x] **型同期確立:** `Scramble` の導入と `openapi-typescript` による `schema.d.ts` の連携。
 
 ### Phase 2: 「鉄壁のフォーム基盤」の構築
 
